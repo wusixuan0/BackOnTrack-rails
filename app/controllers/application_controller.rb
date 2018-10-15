@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
   before_action :ensure_json_request  # ensure all requests are JSON
   respond_to :json #api will be responding to JSON format
 
