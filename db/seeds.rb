@@ -8,3 +8,26 @@
 Testing.create! ({
   message: "hello world"
 })
+
+@user1 = User.create! ({
+  first_name: "Patrick",
+  last_name: "Chu",
+  email: "doctor@test.com",
+  password: "abc123",
+  password_confirmation: "abc123",
+  role: "doctor"
+})
+
+@user2 = User.create! ({
+  first_name: "MingWei",
+  last_name: "Chu",
+  email: "client@test.com",
+  password: "abc123",
+  password_confirmation: "abc123",
+  role: "client"
+})
+@user2.todo_lists.create! ({
+  title: "exercise1",
+  content: "im content1"
+})
+puts @user2.todo_lists.all.inspect
