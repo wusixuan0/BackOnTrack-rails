@@ -8,11 +8,12 @@ class Api::SessionsController < ApplicationController
   def create
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
-      admin ||= user.role === 'doctor' ? true : false
+      # admin ||= user.role === 'doctor' ? true : false
 
       payload = {
         user_id: user.id,
-        admin: admin
+        role: user.role,
+        first_name: user.first_name
       }
       token = self.class.generate_jwt(payload)
       render json: {token: token}, status: :ok

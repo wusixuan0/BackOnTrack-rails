@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_22_175904) do
+ActiveRecord::Schema.define(version: 2018_10_23_173705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,32 @@ ActiveRecord::Schema.define(version: 2018_10_22_175904) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_calendars_on_user_id"
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "doctor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_clients_on_doctor_id"
+    t.index ["user_id"], name: "index_clients_on_user_id"
+  end
+
+  create_table "doctors", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_doctors_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.date "start"
+    t.date "end"
+    t.boolean "allday?"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "testings", force: :cascade do |t|
@@ -48,5 +74,8 @@ ActiveRecord::Schema.define(version: 2018_10_22_175904) do
   end
 
   add_foreign_key "calendars", "users"
+  add_foreign_key "clients", "doctors"
+  add_foreign_key "clients", "users"
+  add_foreign_key "doctors", "users"
   add_foreign_key "todo_lists", "users"
 end
