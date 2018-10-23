@@ -65,6 +65,9 @@ gem 'active_model_serializers'
 gem 'responders'
 gem 'pg'
 gem 'rack-cors'
+gem 'bcrypt'
+gem 'jwt'
+gem 'dotenv-rails'
 
 
 
