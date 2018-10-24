@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     get 'testings/index'
     get 'testings/show'
     post 'users/create'
+    post 'users/update'
     post 'sessions/create'
 
   end

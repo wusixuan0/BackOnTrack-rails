@@ -5,9 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Testing.create! ({
-  message: "hello world"
-})
+
 
 @user1 = User.create! ({
   first_name: "Patrick",
@@ -26,8 +24,28 @@ Testing.create! ({
   password_confirmation: "abc123",
   role: "client"
 })
+
+@user2 = User.create! ({
+  first_name: "asdfgb",
+  last_name: "adsvz",
+  email: "client2@test.com",
+  password: "1",
+  password_confirmation: "1",
+  role: "client"
+})
 @user2.todo_lists.create! ({
   title: "exercise1",
   content: "im content1"
 })
-puts @user2.todo_lists.all.inspect
+Doctor.create({user_id: 1})
+Client.create({user_id: 2, doctor_id: 1})
+Client.create({user_id: 3})
+
+# @user2.events.create ({
+#   title: "event1",
+#   description: "event11 description",
+#   start: new Date('2018-05-12'),
+#   end: new Date('2018-05-12'),
+#   allday?: false
+# })
+
