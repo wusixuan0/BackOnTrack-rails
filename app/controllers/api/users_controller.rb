@@ -27,7 +27,7 @@ class Api::UsersController < ApplicationController
     Client.find_by_user_id(client_user_id).update(doctor_id: doctor_user_id)
     puts Client.find_by_user_id(client_user_id).inspect
     puts params[:userid]
-    @updated_relation = Client.where("doctor_id = #{doctor_user_id}").pluck(:user_id)
+    @updated_relation = User.where(id: Client.where("doctor_id = #{doctor_user_id}").pluck(:user_id)).select(:id, :first_name, :last_name)
     render json: {updated_relation: @updated_relation}, status: :ok
   end
 
