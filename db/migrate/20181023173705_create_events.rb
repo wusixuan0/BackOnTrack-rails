@@ -7,7 +7,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.text :description
       t.date :start
       t.date :end
-      t.boolean :allday?
+      t.boolean :allday
 
       t.timestamps
     end

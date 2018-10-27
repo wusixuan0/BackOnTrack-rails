@@ -52,7 +52,7 @@ class Api::EventsController < ApplicationController
       :description,
       :start,
       :end,
-      :allday?
+      :allday
     )
   end
   def index_params
@@ -65,7 +65,7 @@ class Api::EventsController < ApplicationController
       :description,
       :start,
       :end,
-      :allday?,
+      :allday,
       :doctor_id,
       :client_id
     )

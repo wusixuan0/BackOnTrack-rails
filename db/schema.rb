@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2018_10_23_173705) do
     t.text "description"
     t.date "start"
     t.date "end"
-    t.boolean "allday?"
+    t.boolean "allday"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
