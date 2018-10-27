@@ -42,5 +42,4 @@ Client.create({user_id: 2, doctor_id: 1})
 Client.create({user_id: 3})
 
 
-# events.create!()
 
