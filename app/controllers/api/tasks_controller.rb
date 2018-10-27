@@ -5,8 +5,9 @@ class Api::TasksController < ApplicationController
   end
 
   def create
-    User.find(params[:id]).todo_lists.create(title: "a", content: "b")
-
+    TodoList.create!(task_params)
+    task_list = TodoList.where(user_id: task_params[:user_id]).as_json
+    render json: {tasks: task_list}, status: :ok
   end
   def destroy
   end
@@ -14,7 +15,7 @@ class Api::TasksController < ApplicationController
   def ids_params
     params.permit(:ids)
   end
-  def id_params
-    params.permit(:id)
+  def task_params
+    params.require(:newtask).permit(:user_id, :title, :content)
   end
 end

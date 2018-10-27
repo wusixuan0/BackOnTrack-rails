@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     get 'tasks/index'
     post 'tasks/create'
+    post 'tasks/update'
     post 'tasks/destroy'
     post 'users/create'
     post 'users/update'
