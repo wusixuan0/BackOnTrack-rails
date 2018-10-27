@@ -41,11 +41,6 @@ Doctor.create({user_id: 1})
 Client.create({user_id: 2, doctor_id: 1})
 Client.create({user_id: 3})
 
-# @user2.events.create ({
-#   title: "event1",
-#   description: "event11 description",
-#   start: new Date('2018-05-12'),
-#   end: new Date('2018-05-12'),
-#   allday?: false
-# })
+
+# events.create!()
 
