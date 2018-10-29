@@ -13,8 +13,12 @@ class Api::SessionsController < ApplicationController
         relation_ids = Client.where("doctor_id = #{user.id}").pluck(:user_id)
         relation = User.where(id: relation_ids).select(:id, :first_name, :last_name, :email).as_json
       else
-        relation_ids = Doctor.find(Client.find_by_user_id(user.id).doctor_id).user_id
-        relation = User.where(id: relation_ids).select(:id, :first_name, :last_name, :email).as_json
+        if Client.find_by_user_id(user.id).doctor_id
+          relation_ids = Doctor.find(Client.find_by_user_id(user.id).doctor_id).user_id
+          relation = User.where(id: relation_ids).select(:id, :first_name, :last_name, :email).as_json
+        else #if client does not have any doctor
+          relation = [];
+        end
       end
       payload = {
         user_id: user.id,

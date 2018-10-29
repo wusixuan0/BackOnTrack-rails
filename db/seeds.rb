@@ -26,8 +26,8 @@
 })
 
 @user2 = User.create! ({
-  first_name: "asdfgb",
-  last_name: "adsvz",
+  first_name: "Sixuan",
+  last_name: "Wu",
   email: "client2@test.com",
   password: "1",
   password_confirmation: "1",
