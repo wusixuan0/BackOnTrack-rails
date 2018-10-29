@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     post 'events/create'
     post 'events/destroy'
     post 'events/update'
+    get 'messages/index'
+    post 'messages/create'
+    post 'messages/destroy'
 
 
   end
