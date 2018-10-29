@@ -1,6 +1,6 @@
 class Api::MessagesController < ApplicationController
   def index
-    messages = Message.where(recipient_id: params[:id]).as_json
+    messages = Message.where(sender_id: params[:id]).or(Message.where(recipient_id: params[:id])).order(:id).as_json
     render json: {messages: messages}, status: :ok
   end
   def create
