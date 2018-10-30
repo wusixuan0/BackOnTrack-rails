@@ -2,7 +2,6 @@ class Api::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     if @user.save
       if @user.role == "doctor"
         Doctor.create({user_id: @user.id})

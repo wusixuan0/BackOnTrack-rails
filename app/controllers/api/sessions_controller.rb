@@ -30,8 +30,20 @@ class Api::SessionsController < ApplicationController
       token = self.class.generate_jwt(payload)
       render json: {token: token}, status: :ok
     else
-
       render json: {token: false}, status: 500
     end
+  end
+  def update
+    if Client.find_by_user_id(params[:id]).doctor_id
+      relation_ids = Doctor.find(Client.find_by_user_id(params[:id]).doctor_id).user_id
+      relation = User.where(id: relation_ids).select(:id, :first_name, :last_name, :email).as_json
+    else #if client does not have any doctor
+      relation = [];
+    end
+    render json: {updated_relation: relation}, status: :ok
+  end
+  private
+  def id_params
+    params.permit(:id)
   end
 end

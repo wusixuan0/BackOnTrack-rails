@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     post 'users/create'
     post 'users/update'
     post 'sessions/create'
+    get 'sessions/update'
     get 'events/index'
     post 'events/create'
     post 'events/destroy'
