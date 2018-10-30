@@ -10,10 +10,9 @@ class Api::TasksController < ApplicationController
     render json: {tasks: task_list}, status: :ok
   end
   def destroy
-    TodoList.where(id: params[:id]).destroy
-    render json: {
-        status: 200,
-      }.to_json
+    TodoList.find(params[:id]).destroy
+    task_list = TodoList.where(user_id: params[:user_id]).as_json
+    render json: {tasks: task_list}, status: :ok
   end
   private
   def ids_params
@@ -23,6 +22,6 @@ class Api::TasksController < ApplicationController
     params.require(:newtask).permit(:user_id, :title, :content)
   end
   def id_params
-    params.permit(:id)
+    params.permit(:id, :user_id)
   end
 end
