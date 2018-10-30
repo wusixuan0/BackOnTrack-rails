@@ -3,10 +3,10 @@ class Api::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      if @user.role == "doctor"
-        Doctor.create({user_id: @user.id})
-      else
+      if @user.role == "client"
         Client.create({user_id: @user.id})
+      else
+        Doctor.create({user_id: @user.id})
       end
       render json: {
         status: 200,

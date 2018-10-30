@@ -1,27 +1,42 @@
 class Api::TasksController < ApplicationController
   def index
-    task_list = TodoList.where(user_id: params[:ids]).as_json
-    render json: {tasks: task_list}, status: :ok
+    if params[:role] === 'client'
+      list_doctor_userid = params[:ids]
+      list_doctor_id = Doctor.where(user_id: params[:ids]).pluck(:id)
+      reminders = Reminder.where(doctor_id: list_doctor_id).as_json
+    else
+      list_client_userid = params[:ids]
+      list_client_id = Client.where(user_id: params[:ids]).pluck(:id)
+      reminders = Reminder.where(client_id: list_client_id).as_json
+    end
+    render json: {reminders: reminders}, status: :ok
   end
 
   def create
-    TodoList.create!(task_params)
-    task_list = TodoList.where(user_id: task_params[:user_id]).as_json
-    render json: {tasks: task_list}, status: :ok
+    doctor_id = Doctor.find_by_userid(params[:doctor_user_id]).id
+    client_id = Client.find_by_userid(params[:client_user_id]).id
+    Reminder.create! ({
+      doctor_id: doctor_id,
+      client_id: client_id,
+      title: params[:title],
+      content: params[:content]
+    })
+    reminders = Reminder.where(doctor_id: doctor_id, client_id: client_id).order(:id).as_json
+    render json: {reminders: reminders}, status: :ok
   end
   def destroy
-    TodoList.find(params[:id]).destroy
-    task_list = TodoList.where(user_id: params[:user_id]).as_json
-    render json: {tasks: task_list}, status: :ok
+    Reminder.find(params[:id]).destroy
+    reminders = Reminder.where(doctor_id: doctor_id, client_id: client_id).order(:id).as_json
+    render json: {reminders: reminders}, status: :ok
   end
   private
-  def ids_params
-    params.permit(:ids)
+  def index_params
+    params.permit(:ids, :role)
   end
   def task_params
-    params.require(:newtask).permit(:user_id, :title, :content)
+    params.permit(:doctor_user_id, :client_user_id, :title, :content)
   end
   def id_params
-    params.permit(:id, :user_id)
+    params.permit(:id, :doctor_user_id, :client_user_id)
   end
 end

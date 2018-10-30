@@ -9,15 +9,7 @@ class Api::SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])
       # admin ||= user.role === 'doctor' ? true : false
-      if user.role === 'doctor'
-        doctor_user_id = user.id
-        doctor_id = Doctor.find_by_user_id(doctor_user_id).id
-        list_client_id = Relation.where(doctor_id: doctor_id).pluck(:client_id)
-        list_client_userid = Client.where(id: list_client_id).pluck(:user_id)
-        relation = User.where(id: list_client_userid).select(:id, :first_name, :last_name, :email).as_json
-        # relation_ids = Client.where("doctor_id = #{user.id}").pluck(:user_id)
-        # relation = User.where(id: relation_ids).select(:id, :first_name, :last_name, :email).as_json
-      else
+      if user.role === 'client'
         # if Client.find_by_user_id(user.id).doctor_id
         client_user_id = user.id
         client_id = Client.find_by_user_id(client_user_id).id
@@ -29,6 +21,14 @@ class Api::SessionsController < ApplicationController
         else #if client does not have any doctor
           relation = [];
         end
+      else
+        doctor_user_id = user.id
+        doctor_id = Doctor.find_by_user_id(doctor_user_id).id
+        list_client_id = Relation.where(doctor_id: doctor_id).pluck(:client_id)
+        list_client_userid = Client.where(id: list_client_id).pluck(:user_id)
+        relation = User.where(id: list_client_userid).select(:id, :first_name, :last_name, :email).as_json
+        # relation_ids = Client.where("doctor_id = #{user.id}").pluck(:user_id)
+        # relation = User.where(id: relation_ids).select(:id, :first_name, :last_name, :email).as_json
       end
       payload = {
         user_id: user.id,

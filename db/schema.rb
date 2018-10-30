@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_30_182206) do
+ActiveRecord::Schema.define(version: 2018_10_30_192218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,13 +59,15 @@ ActiveRecord::Schema.define(version: 2018_10_30_182206) do
     t.index ["doctor_id"], name: "index_relations_on_doctor_id"
   end
 
-  create_table "todo_lists", force: :cascade do |t|
-    t.bigint "user_id"
+  create_table "reminders", force: :cascade do |t|
+    t.bigint "doctor_id"
+    t.bigint "client_id"
     t.string "title"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_todo_lists_on_user_id"
+    t.index ["client_id"], name: "index_reminders_on_client_id"
+    t.index ["doctor_id"], name: "index_reminders_on_doctor_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -82,5 +84,6 @@ ActiveRecord::Schema.define(version: 2018_10_30_182206) do
   add_foreign_key "doctors", "users"
   add_foreign_key "relations", "clients"
   add_foreign_key "relations", "doctors"
-  add_foreign_key "todo_lists", "users"
+  add_foreign_key "reminders", "clients"
+  add_foreign_key "reminders", "doctors"
 end
