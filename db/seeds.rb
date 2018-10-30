@@ -38,8 +38,9 @@
   content: "im content1"
 })
 Doctor.create({user_id: 1})
-Client.create({user_id: 2, doctor_id: 1})
+Client.create({user_id: 2})
 Client.create({user_id: 3})
+Relation.create({doctor_id: 1, client_id: 1})
 
 
 

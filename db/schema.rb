@@ -10,17 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_29_172345) do
+ActiveRecord::Schema.define(version: 2018_10_30_182206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "clients", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "doctor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["doctor_id"], name: "index_clients_on_doctor_id"
     t.index ["user_id"], name: "index_clients_on_user_id"
   end
 
@@ -52,6 +50,15 @@ ActiveRecord::Schema.define(version: 2018_10_29_172345) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "relations", force: :cascade do |t|
+    t.bigint "doctor_id"
+    t.bigint "client_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_relations_on_client_id"
+    t.index ["doctor_id"], name: "index_relations_on_doctor_id"
+  end
+
   create_table "todo_lists", force: :cascade do |t|
     t.bigint "user_id"
     t.string "title"
@@ -71,8 +78,9 @@ ActiveRecord::Schema.define(version: 2018_10_29_172345) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "clients", "doctors"
   add_foreign_key "clients", "users"
   add_foreign_key "doctors", "users"
+  add_foreign_key "relations", "clients"
+  add_foreign_key "relations", "doctors"
   add_foreign_key "todo_lists", "users"
 end
