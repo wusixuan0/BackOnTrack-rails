@@ -75,3 +75,54 @@ Reminder.create! ({
   content: "im content1"
 })
 
+Nutrition.create! ({
+  user_id: 2,
+  name: 'egg',
+  quantity: 1,
+  serving_size: 100,
+  calories: 80,
+  carbohydrates: 10,
+  protein: 20,
+  fat: 10
+})
+
+Nutrition.create! ({
+  user_id: 3,
+  name: 'egg',
+  quantity: 1,
+  serving_size: 100,
+  calories: 80,
+  carbohydrates: 10,
+  protein: 20,
+  fat: 10
+})
+Nutrition.create! ({
+  user_id: 3,
+  name: 'bacon',
+  quantity: 1,
+  serving_size: 100,
+  calories: 80,
+  carbohydrates: 10,
+  protein: 20,
+  fat: 10
+})
+Exercise.create! ({
+  user_id: 2,
+  name: 'running',
+  duration: 100,
+  calories: 80
+})
+Exercise.create! ({
+  user_id: 2,
+  name: 'gym',
+  duration: 100,
+  calories: 80
+})
+
+Exercise.create! ({
+  user_id: 3,
+  name: 'running',
+  duration: 100,
+  calories: 80
+})
+

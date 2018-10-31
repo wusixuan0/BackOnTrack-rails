@@ -15,6 +15,14 @@ Rails.application.routes.draw do
     get 'messages/index'
     post 'messages/create'
     post 'messages/destroy'
+    get 'nutritions/index'
+    post 'nutritions/create'
+    post 'nutritions/update'
+    post 'nutritions/destroy'
+    get 'exercises/index'
+    post 'exercises/create'
+    post 'exercises/update'
+    post 'exercises/destroy'
 
 
   end
