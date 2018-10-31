@@ -18,7 +18,7 @@ class Api::SessionsController < ApplicationController
           list_doctor_id = Relation.where(client: client_id).pluck(:doctor_id)
           list_doctor_userid = Doctor.where(id: list_doctor_id).pluck(:user_id)
           relation = User.where(id: list_doctor_userid).select(:id, :first_name, :last_name, :email).as_json
-        else #if client does not have any doctor
+        else # if client does not have any doctor
           relation = [];
         end
       else
@@ -40,7 +40,22 @@ class Api::SessionsController < ApplicationController
       token = self.class.generate_jwt(payload)
       render json: {token: token}, status: :ok
     else
-      render json: {token: false}, status: 500
+      puts ">>>>>>>>"
+      puts user === nil
+      puts user.authenticate(params[:password])
+      if user
+        render json: {
+          status: 500,
+          message: "Wrong Password",
+        }.to_json
+        # render json: {error: "Wrong Password"}, status: 500
+      else
+        render json: {
+          status: 500,
+          message: "Email does not exist",
+        }.to_json
+        # render json: {error: "Email does not exist"}, status: 500
+      end
     end
   end
 

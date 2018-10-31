@@ -66,8 +66,6 @@ ActiveRecord::Schema.define(version: 2018_10_30_192218) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_reminders_on_client_id"
-    t.index ["doctor_id"], name: "index_reminders_on_doctor_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -84,6 +82,4 @@ ActiveRecord::Schema.define(version: 2018_10_30_192218) do
   add_foreign_key "doctors", "users"
   add_foreign_key "relations", "clients"
   add_foreign_key "relations", "doctors"
-  add_foreign_key "reminders", "clients"
-  add_foreign_key "reminders", "doctors"
 end

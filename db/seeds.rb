@@ -52,26 +52,26 @@ Relation.create({doctor_id: 2, client_id: 1})
 
 Reminder.create! ({
   doctor_id: 1,
-  client_id: 1,
-  title: "exercise1",
-  content: "im content1"
+  client_id: 3,
+  title: "1 3 id1",
+  content: "1 3 id1"
 })
 Reminder.create! ({
   doctor_id: 1,
   client_id: 2,
-  title: "exercise1",
-  content: "im content1"
+  title: "1 2 id2",
+  content: "1 2 id2"
 })
 Reminder.create! ({
-  doctor_id: 2,
+  doctor_id: 4,
   client_id: 2,
-  title: "exercise1",
+  title: "4 2 id3",
   content: "im content1"
 })
 Reminder.create! ({
-  doctor_id: 2,
-  client_id: 1,
-  title: "exercise1",
+  doctor_id: 4,
+  client_id: 3,
+  title: "4 3 id4",
   content: "im content1"
 })
 

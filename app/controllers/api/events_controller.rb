@@ -8,7 +8,6 @@ class Api::EventsController < ApplicationController
       @events = Event.where(client_id: params[:id]).as_json
       render json: {events: @events}, status: :ok
     end
-
   end
   def create
     @event = Event.new(event_params)
