@@ -1,7 +1,7 @@
 class Api::EventsController < ApplicationController
   def index
-
-    if params[:role] === 'doctor'
+    puts(params[:role])
+    if params[:role] != 'client'
       @events = Event.where(doctor_id: params[:id]).as_json
       render json: {events: @events}, status: :ok
     else
@@ -9,6 +9,7 @@ class Api::EventsController < ApplicationController
       render json: {events: @events}, status: :ok
     end
   end
+
   def create
     @event = Event.new(event_params)
     if @event.save
