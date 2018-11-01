@@ -7,71 +7,157 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-@user1 = User.create! ({
-  first_name: "Patrick",
-  last_name: "Chu",
-  email: "doctor@test.com",
-  password: "1",
-  password_confirmation: "1",
-  role: "physiotherapist" #Dietitian #counselor
+User.create! ({
+  first_name: "Lorenzo",
+  last_name: "Dyce",
+  email: "doctor4@test.com",
+  password: "123",
+  password_confirmation: "123",
+  role: "Dietitian" #dietitian #counselor
 })
 
-@user2 = User.create! ({
-  first_name: "MingWei",
-  last_name: "Chu",
-  email: "client@test.com",
-  password: "1",
-  password_confirmation: "1",
-  role: "client"
+User.create! ({
+  first_name: "Vincent",
+  last_name: "Ly",
+  email: "doctor5@test.com",
+  password: "123",
+  password_confirmation: "123",
+  role: "Counselor" #dietitian #counselor
 })
 
-@user3 = User.create! ({
+User.create! ({
   first_name: "Sixuan",
   last_name: "Wu",
-  email: "client2@test.com",
-  password: "1",
-  password_confirmation: "1",
+  email: "client@test.com",
+  password: "123",
+  password_confirmation: "123",
   role: "client"
 })
 
-@user4 = User.create! ({
-  first_name: "Jeffery",
-  last_name: "Chu",
-  email: "doctor2@test.com",
-  password: "1",
-  password_confirmation: "1",
-  role: "dietitian" #dietitian #counselor
+User.create! ({
+  first_name: "Rachel",
+  last_name: "Siu",
+  email: "client3@test.com",
+  password: "123",
+  password_confirmation: "123",
+  role: "client"
 })
+
+User.create! ({
+  first_name: "Emma",
+  last_name: "Mcphail",
+  email: "doctor3@test.com",
+  password: "123",
+  password_confirmation: "123",
+  role: "client"
+})
+
 Doctor.create({user_id: 1})
+Doctor.create({user_id: 2})
 
-Client.create({user_id: 2})
 Client.create({user_id: 3})
-Doctor.create({user_id: 4})
+Client.create({user_id: 4})
+Client.create({user_id: 5})
 Relation.create({doctor_id: 1, client_id: 1})
+Relation.create({doctor_id: 1, client_id: 2})
+Relation.create({doctor_id: 1, client_id: 3})
 Relation.create({doctor_id: 2, client_id: 1})
+Relation.create({doctor_id: 2, client_id: 2})
+Relation.create({doctor_id: 2, client_id: 3})
 
 Reminder.create! ({
   doctor_id: 1,
-  client_id: 3,
-  title: "1 3 id1",
-  content: "1 3 id1"
+  client_id: 1,
+  title: "food log",
+  content: "Do a daily food log on this website"
+})
+Reminder.create! ({
+  doctor_id: 1,
+  client_id: 1,
+  title: "limit sugar intake",
+  content: "Keep track of amount of carbohydrates consumed"
+})
+Reminder.create! ({
+  doctor_id: 1,
+  client_id: 1,
+  title: "exercise log",
+  content: "Do a daily exercise log on this website"
 })
 Reminder.create! ({
   doctor_id: 1,
   client_id: 2,
-  title: "1 2 id2",
-  content: "1 2 id2"
+  title: "increase protein intake",
+  content: "Eat more protein!"
 })
 Reminder.create! ({
-  doctor_id: 4,
-  client_id: 2,
-  title: "4 2 id3",
-  content: "im content1"
+  doctor_id: 2,
+  client_id: 1,
+  title: "diary",
+  content: "write diary when you have negative feelings"
 })
 Reminder.create! ({
-  doctor_id: 4,
-  client_id: 3,
-  title: "4 3 id4",
-  content: "im content1"
+  doctor_id: 2,
+  client_id: 1,
+  title: "meditation",
+  content: "Meditate before bed"
 })
+Reminder.create! ({
+  doctor_id: 2,
+  client_id: 1,
+  title: "limit caffein intake",
+  content: "Keep coffee consumption at one cup per day"
+})
+
+Nutrition.create! ({
+  user_id: 3,
+  name: 'egg',
+  quantity: 1,
+  serving_size: 50,
+  calories: 71.5,
+  carbohydrates: 0.36,
+  protein: 6.28,
+  fat: 4.76
+})
+
+Nutrition.create! ({
+  user_id: 4,
+  name: 'egg',
+  quantity: 1,
+  serving_size: 50,
+  calories: 71.5,
+  carbohydrates: 0.36,
+  protein: 6.28,
+  fat: 4.76
+})
+Nutrition.create! ({
+  user_id: 3,
+  name: 'bacon',
+  quantity: 3,
+  serving_size: 34.5,
+  calories: 161.46,
+  carbohydrates: 0.59,
+  protein: 11.7,
+  fat: 12.11
+})
+Exercise.create! ({
+  user_id: 3,
+  name: 'running',
+  duration: 30,
+  calories: 355.25
+})
+# Exercise.create! ({
+#   user_id: 2,
+#   name: 'gym',
+#   duration: 100,
+#   calories: 80
+# })
+
+# Exercise.create! ({
+#   user_id: 3,
+#   name: 'running',
+#   duration: 100,
+#   calories: 80
+# })
+
+
 

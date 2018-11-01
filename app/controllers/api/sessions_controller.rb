@@ -67,7 +67,7 @@ class Api::SessionsController < ApplicationController
     if Relation.find_by_client_id(client_id)
       list_doctor_id = Relation.where(client: client_id).pluck(:doctor_id)
       list_doctor_userid = Doctor.where(id: list_doctor_id).pluck(:user_id)
-      relation = User.where(id: list_doctor_userid).select(:id, :first_name, :last_name, :email).as_json
+      relation = User.where(id: list_doctor_userid).select(:id, :first_name, :last_name, :email, :role).as_json
     else #if client does not have any doctor
       relation = [];
     end
