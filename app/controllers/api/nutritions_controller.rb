@@ -1,18 +1,14 @@
 class Api::NutritionsController < ApplicationController
   def index
-    puts '>>>>>>>>>>>'
-    puts params[id]
-
-
-    foods = Nutrition.where(user_id: params[id]).as_json
+    foods = Nutrition.where(user_id: params[:id]).as_json
     render json: {foods: foods}, status: :ok
   end
 
   def create
-    params[:newfood].map {|food| Nutrition.create!(food)}
-    user_id = params[:newfood][0].user_id
-    foods = Nutrition.where(user_id: user_id).as_json
-    render json: {foods: foods}, status: :ok
+    Nutrition.create!(nutrition_params)
+    user_id = nutrition_params[:user_id]
+    exercises = Nutrition.where(user_id: user_id).as_json
+    render json: {foods: exercises}, status: :ok
   end
 
   def update
@@ -23,8 +19,23 @@ class Api::NutritionsController < ApplicationController
 
   private
   def nutrition_params
-    params.permit(:newfood)
+    params.require(:nutritions).permit(:user_id, :name, :quantity,
+      :serving_size, :calories, :carbohydrates,
+      :protein, :fat)
   end
+
+  # def nutrition_params
+  #   params.require(:nutritions).map do |f|
+  #     ActionController::Parameters.new(f).permit(
+  #       :name,
+  #       :quantity,
+  #       :serving_size,
+  #       :calories,
+  #       :carbohydrates, :protein, :fat
+  #     )
+  #   end
+  # end
+
   def index_params
     params.permit(:id)
   end
