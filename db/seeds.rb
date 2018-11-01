@@ -7,10 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+
 User.create! ({
   first_name: "Lorenzo",
   last_name: "Dyce",
-  email: "doctor4@test.com",
+  email: "doctor2@test.com",
   password: "123",
   password_confirmation: "123",
   role: "Dietitian" #dietitian #counselor
@@ -19,7 +20,7 @@ User.create! ({
 User.create! ({
   first_name: "Vincent",
   last_name: "Ly",
-  email: "doctor5@test.com",
+  email: "doctor3@test.com",
   password: "123",
   password_confirmation: "123",
   role: "Counselor" #dietitian #counselor
@@ -28,7 +29,7 @@ User.create! ({
 User.create! ({
   first_name: "Sixuan",
   last_name: "Wu",
-  email: "client@test.com",
+  email: "wusixuan2@gmail.com",
   password: "123",
   password_confirmation: "123",
   role: "client"
@@ -37,7 +38,7 @@ User.create! ({
 User.create! ({
   first_name: "Rachel",
   last_name: "Siu",
-  email: "client3@test.com",
+  email: "client1@test.com",
   password: "123",
   password_confirmation: "123",
   role: "client"
@@ -46,46 +47,95 @@ User.create! ({
 User.create! ({
   first_name: "Emma",
   last_name: "Mcphail",
-  email: "doctor3@test.com",
+  email: "client2@test.com",
   password: "123",
   password_confirmation: "123",
   role: "client"
 })
 
+User.create! ({
+  first_name: "Andrew",
+  last_name: "Hieh",
+  email: "client3@test.com",
+  password: "123",
+  password_confirmation: "123",
+  role: "client"
+})
+
+User.create! ({
+  first_name: "Monting",
+  last_name: "Lin",
+  email: "client4@test.com",
+  password: "123",
+  password_confirmation: "123",
+  role: "client"
+})
+
+User.create! ({
+  first_name: "Patrick",
+  last_name: "Chen",
+  email: "doctor1@test.com",
+  password: "123",
+  password_confirmation: "123",
+  role: "Physiotherapist" #dietitian #counselor
+})
+
 Doctor.create({user_id: 1})
 Doctor.create({user_id: 2})
+Doctor.create({user_id: 8})
 
 Client.create({user_id: 3})
 Client.create({user_id: 4})
 Client.create({user_id: 5})
+Client.create({user_id: 6})
+Client.create({user_id: 7})
+
 Relation.create({doctor_id: 1, client_id: 1})
 Relation.create({doctor_id: 1, client_id: 2})
 Relation.create({doctor_id: 1, client_id: 3})
+Relation.create({doctor_id: 1, client_id: 4})
+Relation.create({doctor_id: 1, client_id: 5})
 Relation.create({doctor_id: 2, client_id: 1})
 Relation.create({doctor_id: 2, client_id: 2})
 Relation.create({doctor_id: 2, client_id: 3})
+Relation.create({doctor_id: 2, client_id: 4})
+Relation.create({doctor_id: 2, client_id: 5})
 
 Reminder.create! ({
   doctor_id: 1,
   client_id: 1,
-  title: "food log",
-  content: "Do a daily food log on this website"
+  title: "enter food log",
+  content: "Do a daily food log on this website in the nutrition section"
 })
+
 Reminder.create! ({
   doctor_id: 1,
   client_id: 1,
   title: "limit sugar intake",
   content: "Keep track of amount of carbohydrates consumed"
 })
+
 Reminder.create! ({
   doctor_id: 1,
   client_id: 1,
   title: "exercise log",
-  content: "Do a daily exercise log on this website"
+  content: "Do a daily exercise log on this website in the exercise section"
+})
+Reminder.create! ({
+  doctor_id: 1,
+  client_id: 1,
+  title: "increase protein intake",
+  content: "Eat more protein!"
 })
 Reminder.create! ({
   doctor_id: 1,
   client_id: 2,
+  title: "increase protein intake",
+  content: "Eat more protein!"
+})
+Reminder.create! ({
+  doctor_id: 1,
+  client_id: 3,
   title: "increase protein intake",
   content: "Eat more protein!"
 })
@@ -141,6 +191,13 @@ Nutrition.create! ({
 })
 Exercise.create! ({
   user_id: 3,
+  name: 'running',
+  duration: 30,
+  calories: 355.25
+})
+
+Exercise.create! ({
+  user_id: 4,
   name: 'running',
   duration: 30,
   calories: 355.25

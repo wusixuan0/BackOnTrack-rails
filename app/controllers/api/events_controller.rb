@@ -1,7 +1,7 @@
 class Api::EventsController < ApplicationController
   def index
 
-    if params[:role] === 'doctor'
+    if params[:role] != 'client'
       @events = Event.where(doctor_id: params[:id]).as_json
       render json: {events: @events}, status: :ok
     else
