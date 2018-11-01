@@ -31,7 +31,7 @@ class Api::UsersController < ApplicationController
     #   .pluck(:user_id)).select(:id, :first_name, :last_name)
     list_client_id = Relation.where(doctor_id: doctor_id).pluck(:client_id)
     list_client_userid = Client.where(id: list_client_id).pluck(:user_id)
-    @updated_relation = User.where(id: list_client_userid).select(:id, :first_name, :last_name, :email).as_json
+    @updated_relation = User.where(id: list_client_userid).select(:id, :first_name, :last_name, :email, :role).as_json
     render json: {updated_relation: @updated_relation}, status: :ok
   end
 
